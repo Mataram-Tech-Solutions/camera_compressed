@@ -1,0 +1,52 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+android {
+    compileSdkVersion 34  // Ganti menjadi 34 untuk SDK version yang lebih tinggi
+
+    defaultConfig {
+        applicationId "com.example.camera_compresed"  // Ganti sesuai package
+        minSdkVersion 24  // Minimal SDK version tetap 21, Anda bisa menyesuaikan sesuai dengan aplikasi
+        targetSdkVersion 34  // Ganti menjadi 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // Opsional: Konfigurasi untuk menghindari masalah multiDex
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+
+
+flutter {
+    source '../..'
+}
+
+dependencies {}
